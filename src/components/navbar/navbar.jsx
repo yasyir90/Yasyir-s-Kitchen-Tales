@@ -33,7 +33,7 @@ function NavbarH() {
           )}
         </Nav>
         <Navbar.Brand  to="/">
-          <span className="mx-1 logo fs-1 text-focus-in">Yasyir's Kitchen Tales</span>
+          {/* <span className="mx-1 logo fs-1 text-focus-in">Yasyir's Kitchen Tales</span> */}
         </Navbar.Brand>
         <Nav className="link">
           {localStorage.getItem("token") ? (

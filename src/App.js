@@ -4,6 +4,8 @@ import NavbarH from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import Home from './pages/home/home';
 import About from './pages/about/about';
+import AllFood from './pages/AllFood/AllFood';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,10 +27,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
-      // {
-      //   path: "/detail/:foodID",
-      //   element: <Detail />,
-      // },
+      {
+        path: "/allfood",
+        element: <AllFood />,
+      },
       // {
       //   path: "/favorite",
       //   element: localStorage.getItem("token") ? <Favorite /> : <Error />,

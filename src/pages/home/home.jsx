@@ -1,8 +1,11 @@
-import Description from './components/description/description';
+import Description from "../../components/description/description"
+
 
 const Home = () =>{
     return(
-        <Description/>
+     <div>
+           <Description/>      
+     </div>
     )
 }
 

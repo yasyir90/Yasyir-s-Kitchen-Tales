@@ -6,6 +6,7 @@ import Home from './pages/home/home';
 import About from './pages/about/about';
 import AllFood from './pages/AllFood/AllFood';
 import Login from './pages/login/login';
+import Signin from './pages/signin/signIn';
 
 const router = createBrowserRouter([
   {
@@ -56,10 +57,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  // {
-  //   path: "/register",
-  //   element: <Register />,
-  // },
+  {
+    path: "/Signin",
+    element: <Signin/>,
+  },
 ]);
 
 const App = () => <RouterProvider router={router} />;

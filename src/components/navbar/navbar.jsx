@@ -58,9 +58,14 @@ function NavbarH() {
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
+              <div className='d-flex'>
               <Nav.Link as={Link} to="/login" className="log">
-                Login
-              </Nav.Link>
+               Login
+             </Nav.Link>
+              <Nav.Link as={Link} to="/Signin" className="log">
+               Signin
+             </Nav.Link>
+             </div>
             )}
           </Nav>
         </Navbar.Collapse>

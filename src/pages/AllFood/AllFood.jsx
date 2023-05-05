@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import axios from "axios";
+import './AllFood.css'
 
 const AllFood = () => {
   const [dataFood, setDataFood] = useState([]);
@@ -26,11 +27,12 @@ const AllFood = () => {
   console.log(dataFood)
   
   return (
-    <Container fluid className="py-5 min-vh-100">
-      <h1 className="title text-center">All Food</h1>
+    <Container fluid className="py-5 min-vh-100 ">
+         <h1 className="title text-center">All Food</h1>
+      <div className="d-flex flex-wrap justify-content-center">
       {dataFood.map((food) => (
-          <Card key={food.id} style={{ width: "18rem", marginBottom: "30px" }}>
-            <Card.Img variant="top" src={food.imageUrl} alt="recipe image" />
+          <Card key={food.id} style={{ width: "18rem", marginBottom: "30px", marginRight: "20px" }}>
+            <Card.Img variant="top" src={food.imageUrl} alt="recipe image"  className="card-img" />
             <Card.Body>
               <Card.Title>{food.name}</Card.Title>
               <Button variant="warning">View Recipe</Button>
@@ -38,6 +40,7 @@ const AllFood = () => {
           </Card>
         ))
      }
+      </div>
     </Container>
   );
   

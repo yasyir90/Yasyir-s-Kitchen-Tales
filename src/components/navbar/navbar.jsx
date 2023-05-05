@@ -58,7 +58,7 @@ function NavbarH() {
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <Nav.Link to="/login" className="log">
+              <Nav.Link as={Link} to="/login" className="log">
                 Login
               </Nav.Link>
             )}

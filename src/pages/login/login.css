@@ -1,0 +1,16 @@
+.background{
+    background-color: antiquewhite;
+    width: 90%;
+    border-radius: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .background {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 900px) {
+    .background {
+      width: 60%;
+    }
+  }

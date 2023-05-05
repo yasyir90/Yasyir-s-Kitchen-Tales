@@ -5,6 +5,7 @@ import Footer from './components/footer/footer';
 import Home from './pages/home/home';
 import About from './pages/about/about';
 import AllFood from './pages/AllFood/AllFood';
+import Login from './pages/login/login';
 
 const router = createBrowserRouter([
   {
@@ -51,10 +52,10 @@ const router = createBrowserRouter([
       // },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <Login />,
-  // },
+  {
+    path: "/login",
+    element: <Login />,
+  },
   // {
   //   path: "/register",
   //   element: <Register />,

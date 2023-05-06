@@ -1,8 +1,10 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const About =()=>{
     return(
-        <div style={{marginTop: '300px',marginBottom: "300px"}}>
+        <Container>
+            <div style={{marginTop: '250px',marginBottom: "250px"}}>
             <span className="mx-1 logo fs-1 text-focus-in">Yasyir's Kitchen Tales</span>
             <p style={{color: 'white'}}>Yasyir's Kitchen Tales adalah sebuah situs yang menyediakan kumpulan resep makanan dari berbagai jenis dan masakan yang dapat diakses secara online. Situs ini berisi berbagai macam resep mulai dari makanan ringan hingga hidangan utama, dari masakan tradisional hingga masakan modern, dan dari resep vegetarian hingga daging.
 
@@ -15,6 +17,7 @@ Kami selalu berusaha untuk memberikan informasi yang akurat dan berguna bagi pen
 
 Demikianlah tentang Yasyir's Kitchen Tales, kami berharap platform kami dapat membantu pengguna dalam mengeksplorasi dan mencoba berbagai resep makanan yang baru dan menarik. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau masukan mengenai platform kami. Terima kasih telah menggunakan Yasyir's Kitchen Tales!</p>
         </div>
+        </Container>
     )
 }
 

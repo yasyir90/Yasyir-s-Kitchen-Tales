@@ -21,9 +21,10 @@
   }
 }
 
-.nav-link {
-  font-size: 25px;
-  color: #f3efe0;
-  font-weight: bold;
-  font-family: 'Nunito', sans-serif;
+.button{
+  color: white;
+  border: 1px  solid #51f485;
+  text-decoration: none;
+  padding: 6px;
+  border-radius:10px;
 }

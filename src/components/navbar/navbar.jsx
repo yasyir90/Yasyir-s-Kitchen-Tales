@@ -2,9 +2,36 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import './navbar.css';
 import logo from './logo.png';
 import { Link } from 'react-router-dom';
+import { useState , useEffect} from 'react';
+import axios from 'axios';
 
 
 function NavbarH() {
+
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    const fetchUserData = async () => {
+        const Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiJjYTIzZDdjYy02Njk1LTQzNGItODE2Yy03ZTlhNWMwNGMxNjQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjE4NzUzMjF9.wV2OECzC25qNujtyb9YHyzYIbYEV-wud3TQsYv7oB4Q'
+      
+      try {
+        const response = await axios.get(`https://api-bootcamp.do.dibimbing.id/api/v1/user`,{
+          headers: {
+            Authorization:  `Bearer ${localStorage.getItem('token')}`,
+            apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
+          },
+        });
+
+        setUserData(response.data.user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (localStorage.getItem("token")) {
+      fetchUserData();
+    }
+  }, []);
+
 
   
   return (
@@ -44,7 +71,7 @@ function NavbarH() {
           <Nav className="ms-auto">
             {localStorage.getItem("token") ? (
               <NavDropdown title="Account" id="basic-nav-dropdown drp">
-                <NavDropdown.Item to={`/profile`}>
+                <NavDropdown.Item as={Link} to={`/profile`}>
                   My Profile
                 </NavDropdown.Item>
                 {localStorage.getItem("role") === "admin" && (

@@ -7,6 +7,8 @@ import About from './pages/about/about';
 import AllFood from './pages/AllFood/AllFood';
 import Login from './pages/login/login';
 import Signin from './pages/signin/signIn';
+import Profile from './pages/profile/profile';
+import Error from './pages/Error/Error';
 
 const router = createBrowserRouter([
   {
@@ -42,10 +44,10 @@ const router = createBrowserRouter([
       //   element:
       //     localStorage.getItem("role") === "admin" ? <AddFood /> : <Error />,
       // },
-      // {
-      //   path: "/profile",
-      //   element: localStorage.getItem("token") ? <Profile /> : <Error />,
-      // },
+      {
+        path: "/profile",
+        element: localStorage.getItem("token") ? <Profile /> : <Error />,
+      },
       // {
       //   path: "/all-users",
       //   element:

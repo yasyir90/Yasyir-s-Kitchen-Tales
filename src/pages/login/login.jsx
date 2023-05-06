@@ -35,7 +35,20 @@ export default class Login extends Component {
       })
       .then(response => {
         console.log(response.data);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+
+        const role = response.data.user.role;
+        localStorage.setItem("role", role);
+
+        const name = response.data.user.name;
+        localStorage.setItem("name", name);
+
+        const email = response.data.user.email;
+        localStorage.setItem("email", email);
         // Do something with the response
+        window.location.href = "/";
+        console.log(token)
       })
       .catch(error => {
         console.log(error);

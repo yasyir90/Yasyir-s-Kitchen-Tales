@@ -14,13 +14,13 @@ function Footer() {
             <p>Ikuti kami di:</p>
             <ul className="list-inline">
               <li className="list-inline-item">
-                <a href="#">Facebook</a>
+                <i>facebook</i>              
+                </li>
+              <li className="list-inline-item">
+              <i>facebook</i>    
               </li>
               <li className="list-inline-item">
-                <a href="#">Twitter</a>
-              </li>
-              <li className="list-inline-item">
-                <a href="#">Instagram</a>
+              <i>facebook</i>    
               </li>
             </ul>
           </Col>

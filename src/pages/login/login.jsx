@@ -63,7 +63,7 @@ export default class Login extends Component {
             Submit
           </Button>
           <p className="forgot-password text-right mt-2">
-            Forgot <a href="#">password?</a>
+            Forgot
           </p>
         </Form>
       </div>

@@ -46,6 +46,9 @@ export default class Login extends Component {
 
         const email = response.data.user.email;
         localStorage.setItem("email", email);
+
+        const id = response.data.user.id;
+        localStorage.setItem("id", id);
         // Do something with the response
         window.location.href = "/";
         console.log(token)

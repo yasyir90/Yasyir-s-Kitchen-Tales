@@ -63,7 +63,7 @@ export default class Login extends Component {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', minHeight: '100vh' }}>
         <Form className="background p-4" onSubmit={this.handleSubmit}>
-          <h3 className="mb-4">Sign In</h3>
+          <h3 className="mb-4">Login</h3>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" name="email" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} />

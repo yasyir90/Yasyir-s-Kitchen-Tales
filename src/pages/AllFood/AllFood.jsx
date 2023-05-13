@@ -106,33 +106,33 @@ const AllFood = () => {
     }
   };
   
-  const handleUnLike = async (id) => {
-    const token = localStorage.getItem("token");
-    try {
-      const headers = {
-        apiKey: process.env.REACT_APP_APIKEY,
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      };
-      const data = { foodId: id };
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/v1/unlike`,
-        {
-          method: "POST",
-          headers,
-          body: JSON.stringify(data),
-        }
-      );
-      const result = await response.json();
-      setDataFood(prevState =>
-        prevState.map(food =>
-          food.id === id ? { ...food, isLiked: result.like } : food
-        )
-      );
-    } catch (error) {
-      console.log("Error unlike:", error);
-    }
-  };
+  // const handleUnLike = async (id) => {
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const headers = {
+  //       apiKey: process.env.REACT_APP_APIKEY,
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     };
+  //     const data = { foodId: id };
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BASE_URL}/api/v1/unlike`,
+  //       {
+  //         method: "POST",
+  //         headers,
+  //         body: JSON.stringify(data),
+  //       }
+  //     );
+  //     const result = await response.json();
+  //     setDataFood(prevState =>
+  //       prevState.map(food =>
+  //         food.id === id ? { ...food, isLiked: result.like } : food
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.log("Error unlike:", error);
+  //   }
+  // };
   
   
   const handleLikeToggle = async (id, isLiked) => {

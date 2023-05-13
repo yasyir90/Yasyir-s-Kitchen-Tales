@@ -30,11 +30,11 @@ const Profile = () => {
 
   return (
     <Container className="my-4">
-      <Row>
+      <Row style={{background:"white",marginTop:"20px",padding:"20px",borderRadius:"15px"}}>
         <Col xs={12} md={4} className="d-flex justify-content-center align-items-center">
-          <Image src={userData.profilePictureUrl || "https://via.placeholder.com/200x200"} roundedCircle />
+          <Image style={{ width: "200px", height: "200px", objectFit: "cover", objectPosition: "center",marginBottom:"10px" }} src={userData.profilePictureUrl || "https://via.placeholder.com/200x200"} roundedCircle />
         </Col>
-        <Col xs={12} md={8}>
+        <Col xs={12} md={8} style={{textAlign:"center",marginTop:"10px"}}>
           <h2>{userData.name}</h2>
           <p>{userData.email}</p>
           <p>{userData.phoneNumber}</p>

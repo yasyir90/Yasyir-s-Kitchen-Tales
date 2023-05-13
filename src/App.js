@@ -9,17 +9,19 @@ import Login from './pages/login/login';
 import Signin from './pages/signin/signIn';
 import Profile from './pages/profile/profile';
 import Error from './pages/Error/Error';
+import AllUser from './pages/allUser/allUser';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
+      <div className="App">
         <NavbarH />
-        <Outlet />
-        {/* <Contact /> */}
+        <main>
+          <Outlet />
+        </main>
         <Footer />
-      </>
+      </div>
     ),
     // errorElement: <Error />,
     children: [
@@ -48,11 +50,11 @@ const router = createBrowserRouter([
         path: "/profile",
         element: localStorage.getItem("token") ? <Profile /> : <Error />,
       },
-      // {
-      //   path: "/all-users",
-      //   element:
-      //     localStorage.getItem("role") === "admin" ? <AllUsers /> : <Error />,
-      // },
+      {
+        path: "/all-users",
+        element:
+          localStorage.getItem("role") === "admin" ? <AllUser /> : <Error />,
+      },
     ],
   },
   {
@@ -66,5 +68,4 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => <RouterProvider router={router} />;
-
 export default App;

@@ -54,11 +54,7 @@ function NavbarH() {
             </Nav.Link>
          
 
-            {localStorage.getItem("token") && (
-              <Nav.Link to="/favorite">
-                Favorite
-              </Nav.Link>
-            )}
+           
             {localStorage.getItem("role") === "admin" && (
               <Nav.Link to="/add-food">
                 Add Food
@@ -75,7 +71,7 @@ function NavbarH() {
                   My Profile
                 </NavDropdown.Item>
                 {localStorage.getItem("role") === "admin" && (
-                  <NavDropdown.Item to="/all-users">
+                  <NavDropdown.Item  as={Link} to="/all-users">
                     All User
                   </NavDropdown.Item>
                 )}

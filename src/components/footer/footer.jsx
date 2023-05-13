@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 function Footer() {
   return (
     <footer className="bg-dark text-light py-3 bottom">
-      <Container>
+      <Container style={{marginTop:"100px"}}>
         <Row>
           <Col md={6}>
             <p>Alamat: Jalan Raya No.123, Jakarta Selatan</p>

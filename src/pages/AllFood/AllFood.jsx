@@ -165,7 +165,7 @@ const AllFood = () => {
             <Card.Body>
               <Card.Title style={{ textAlign: "center" }}>{food.name}</Card.Title>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="warning">View Recipe</Button>
+                <Button variant="warning">Detail</Button>
                 <Button style={{ background: "none", border: "none" }}>
                   <img
                     onClick={() => handleLikeToggle(food.id)}

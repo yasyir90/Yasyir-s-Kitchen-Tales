@@ -46,13 +46,17 @@ function NavbarH() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/allfood">
-              All Food
-            </Nav.Link>
+          
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
          
+         
+            {localStorage.getItem("role") === "admin" && (
+               <Nav.Link as={Link} to="/allfood">
+               All Food
+             </Nav.Link>
+            )}
 
            
             {localStorage.getItem("role") === "admin" && (

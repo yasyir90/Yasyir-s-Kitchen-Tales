@@ -60,7 +60,7 @@ function NavbarH() {
 
            
             {localStorage.getItem("role") === "admin" && (
-              <Nav.Link to="/add-food">
+              <Nav.Link as={Link} to="/addfood">
                 Add Food
               </Nav.Link>
             )}

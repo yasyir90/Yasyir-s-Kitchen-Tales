@@ -10,6 +10,7 @@ import Signin from './pages/signin/signIn';
 import Profile from './pages/profile/profile';
 import Error from './pages/Error/Error';
 import AllUser from './pages/allUser/allUser';
+import AddFood from './pages/addFood/addFood';
 
 const router = createBrowserRouter([
   {
@@ -37,10 +38,10 @@ const router = createBrowserRouter([
         path: "/allfood",
         element: <AllFood />,
       },
-      // {
-      //   path: "/favorite",
-      //   element: localStorage.getItem("token") ? <Favorite /> : <Error />,
-      // },
+      {
+        path: "/addfood",
+        element: localStorage.getItem("token") ? <AddFood /> : <Error />,
+      },
       // {
       //   path: "/add-food",
       //   element:

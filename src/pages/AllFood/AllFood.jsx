@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
 import { Container, Button, Card } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import "./AllFood.css";
 import like from "../assets/heart-shape.png";
 import likes from "../assets/hearts.png";
+import Ratings from "./ratings";
 
 const AllFood = () => {
   const [dataFood, setDataFood] = useState([]);
   const [likePhoto, setLikePhoto] = useState([like]);
-  const [ratings, setRatings]= useState([]);
-  const starPhoto = "https://img.icons8.com/plasticine/100/000000/star--v1.png";
   
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,22 +47,7 @@ const AllFood = () => {
           }
         });
   
-        if (handleShow) { // hanya melakukan fetch rating jika handleClose di klik
-          idFoods.forEach(async (id) => {
-            try {
-              const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/food-rating/${id}`, {
-                method: "GET",
-                headers,
-              });
-              const foodRating = await response.json();
-              const foodRatings = foodRating.data;
-              setRatings(foodRatings)
-              // console.log(foodRatings);
-            } catch (error) {
-              console.log("Error while fetching food data:", error);
-            }
-          });
-        }
+   
       } catch (error) {
         console.log("Error while fetching data:", error);
       }
@@ -145,8 +126,7 @@ const AllFood = () => {
     );
   };
 
-   const [show, setShow] = useState(false);
-
+ 
   return (
     <Container fluid className="py-5 min-vh-100 ">
       <h1 className="title text-center">All Food</h1>
@@ -174,38 +154,8 @@ const AllFood = () => {
                     style={{ width: "20px", marginLeft: "10px", cursor: "pointer" }}
                   />
                 </Button>
-                <Button variant="primary" onClick={handleShow}>
-        Ratings
-      </Button>
-
-      <Modal show={show} onHide={handleClose} centered>
-  <Modal.Header closeButton>
-    <Modal.Title style={{ fontSize: "28px", fontWeight: "bold", color: "#333" }}>
-      View Rating for {ratings.name}
-    </Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    {ratings.map((review) => (
-      <div key={review.id} style={{ marginBottom: "20px" }}>
-        <h5 style={{ fontSize: "18px", fontWeight: "bold", color: "#333" }}>{review.user.name}</h5>
-        <p style={{ fontSize: "16px", color: "#666" }}>{review.review}</p>
-        <div>
-          {[...Array(review.rating)].map((e, i) => (
-            <img
-              key={i}
-              src={starPhoto}
-              alt="star"
-              style={{ width: "20px", marginRight: "5px" }}
-            />
-          ))}
-        </div>
-      </div>
-    ))}
-  </Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={handleClose}>Close</Button>
-  </Modal.Footer>
-</Modal>
+              
+      <Ratings idFood={food.id}/>
 
               </div>
             </Card.Body>

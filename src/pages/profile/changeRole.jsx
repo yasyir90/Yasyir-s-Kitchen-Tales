@@ -5,7 +5,6 @@ import axios from 'axios';
 const ChangeRole = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedRole, setSelectedRole] = useState('');
-    const [roles, setRoles] = useState({});
 
     
     const handleChangeRole = async () => {
@@ -44,8 +43,7 @@ const ChangeRole = () => {
             config
           );
           const roles =JSON.stringify(responseRole.data)
-          setRoles(roles)
-          // const roles= role.user.id
+        
           localStorage.setItem("role", roles);
            window.location.reload();
         }

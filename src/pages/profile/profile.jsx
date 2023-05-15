@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import axios from 'axios';
+import EditProfile from './editProfile';
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -41,6 +42,7 @@ const Profile = () => {
           <p>{userData.role}</p>
         </Col>
       </Row>
+      <EditProfile/>
     </Container>
   );
 };

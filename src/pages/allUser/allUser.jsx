@@ -10,7 +10,7 @@ const AllUser = () => {
       try {
         const response = await axios.get(`https://api-bootcamp.do.dibimbing.id/api/v1/all-user`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhc3lpcm1hc3lhaGhndWxAZ21haWwuY29tIiwidXNlcklkIjoiMDE1MDBmNWItZDk1MC00YjNiLTg2ZDYtZTdjZWZlMDRiMTdlIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg0MDMzOTgzfQ.RdonVZLKNhC4cJq6ugBIv0pqxCHJaS38FqWYweky2Fc`,
             apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
           },
         });

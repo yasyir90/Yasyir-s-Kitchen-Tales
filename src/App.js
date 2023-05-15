@@ -53,8 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-users",
-        element:
-          localStorage.getItem("role") === "admin" ? <AllUser /> : <Error />,
+        element: localStorage.getItem("token") ?  <AllUser /> : <Error />,
       },
     ],
   },

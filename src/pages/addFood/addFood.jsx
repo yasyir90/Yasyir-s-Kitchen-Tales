@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import ImageUpload from "../../components/upload/uploadImg";
+
 import axios from "axios";
 
 const AddFood = () => {
@@ -11,7 +11,6 @@ const AddFood = () => {
     ingredients: [""],
   });
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imgUrl, setImgUrl] = useState(null);
   console.log(food)
 
   const handleInputChange = (event) => {
@@ -19,10 +18,6 @@ const AddFood = () => {
     setFood({ ...food, [name]: value });
   };
 
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    setFood({ ...food, imageUrl: URL.createObjectURL(file) });
-  };
 
   const handleIngredientsChange = (event, index) => {
     const newIngredients = [...food.ingredients];
@@ -71,7 +66,6 @@ const AddFood = () => {
         ingredients: [''],
       });
       setSelectedImage(null);
-      setImgUrl(null);
     } else {
       window.location.href = "/allfood";
     }
@@ -105,10 +99,8 @@ const AddFood = () => {
         { headers }
       );
       const url = response.data.url
-      setImgUrl(url)
       setFood({ ...food, imageUrl: url });
 
-      console.log('Response:', url.url);
       // Handle the response
 
 

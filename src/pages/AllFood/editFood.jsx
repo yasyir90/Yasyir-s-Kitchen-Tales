@@ -58,12 +58,10 @@ const EditFoodModal = ({ idFood }) => {
           });
       
           if (response.ok) {
-            console.log("Food added successfully");
             // tambahkan kode untuk menampilkan pesan sukses atau melakukan navigasi ke halaman lain
     setShowModal(false)
     window.location.reload();
           } else {
-            console.log(response);
             // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
           }
         } catch (error) {

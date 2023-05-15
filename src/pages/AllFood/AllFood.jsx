@@ -7,6 +7,7 @@ import likes from "../assets/hearts.png";
 import Ratings from "./ratings";
 import FoodDetails from "./details";
 import EditFoodModal from "./editFood";
+import DeleteFood from "./deletFood";
 
 const AllFood = () => {
   const [dataFood, setDataFood] = useState([]);
@@ -156,12 +157,25 @@ const AllFood = () => {
         </div>
         <Card.Body>
           <Card.Title style={{ textAlign: "center" }}>{food.name}</Card.Title>
-        <div style={{display: "flex" , justifyContent: "space-between"}}>
-        <FoodDetails  food={food} />
-            <Ratings idFood={food.id} style={{}}/>
-            <EditFoodModal idFood={food.id} style={{}}/>
+
+        <div style={{display: "flex" , justifyContent: "space-between",marginBottom:"20px"}}>
+     
+        {localStorage.getItem("role") === "admin" && (
+                <DeleteFood idFood={food.id} style={{}}/>
+            )}
+                {localStorage.getItem("role") === "admin" && (
+                 <EditFoodModal idFood={food.id} style={{}}/>
+            )}
+
 
         </div>
+
+         <div style={{display: "flex" , justifyContent: "space-between"}}>
+         <Ratings idFood={food.id} style={{}}/>
+            <FoodDetails  food={food} />
+     
+        </div>
+        
         
             <div style={{ marginTop: "10px", display: "flex" , justifyContent: "space-around" }}>
               <p style={{  marginBottom: "0" }}>Rating: {food.rating}</p>
@@ -172,8 +186,6 @@ const AllFood = () => {
     ))}
   </div>
 </Container>
-
-
   );
   
 };

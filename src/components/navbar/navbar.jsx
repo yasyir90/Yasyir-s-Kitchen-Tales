@@ -51,13 +51,12 @@ function NavbarH() {
               About
             </Nav.Link>
          
-         
-            {localStorage.getItem("role") === "admin" && (
-               <Nav.Link as={Link} to="/allfood">
+
+            <Nav.Link as={Link} to="/allfood">
                All Food
              </Nav.Link>
-            )}
-
+         
+           
            
             {localStorage.getItem("role") === "admin" && (
               <Nav.Link as={Link} to="/addfood">
@@ -74,11 +73,9 @@ function NavbarH() {
                 <NavDropdown.Item as={Link} to={`/profile`}>
                   My Profile
                 </NavDropdown.Item>
-                {localStorage.getItem("role") === "admin" && (
-                  <NavDropdown.Item  as={Link} to="/all-users">
+                <NavDropdown.Item  as={Link} to="/all-users">
                     All User
-                  </NavDropdown.Item>
-                )}
+                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => {
   localStorage.clear();
@@ -89,7 +86,7 @@ function NavbarH() {
               </NavDropdown>
             ) : (
               <div className='d-flex'>
-              <Nav.Link as={Link} to="/login" className="log">
+              <Nav.Link as={Link} to="/login" className="log" style={{marginRight:"20px"}}>
                Login
              </Nav.Link>
               <Nav.Link as={Link} to="/Signin" className="log">

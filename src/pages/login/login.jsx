@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import './login.css';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loginError: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,13 +51,15 @@ export default class Login extends Component {
 
         const id = response.data.user.id;
         localStorage.setItem("id", id);
-        // Do something with the response
+        // Redirect to home page or do something else
         window.location.href = "/";
         console.log(token)
       })
       .catch(error => {
         console.log(error);
-        // Handle the error
+        this.setState({
+          loginError: 'Failed to login. Please check your password or email.'
+        });
       });
   }
 
@@ -78,9 +82,10 @@ export default class Login extends Component {
           <Button variant="primary" type="submit" className="w-100">
             Submit
           </Button>
-          <p className="forgot-password text-right mt-2">
-            Forgot
-          </p>
+          {this.state.loginError && <p className="text-danger mt-2">{this.state.loginError}</p>}
+          <Link as={Link} style={{textDecoration:"none",marginTop:"10px" ,marginBottom:"10px"}} to="/Signin" className="forgot-password text-right mt-2">
+            Daftar
+          </Link>
         </Form>
       </div>
     );

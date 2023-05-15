@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Signin = () => {
@@ -11,7 +12,7 @@ const Signin = () => {
     email: '',
     password: '',
     passwordRepeat: '',
-    role: 'admin',
+    role: '',
     profilePictureUrl: '',
     phoneNumber: '',
   });
@@ -23,6 +24,7 @@ const Signin = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setUserData((prevUserData) => ({
       ...prevUserData,
       [name]: value,
@@ -51,11 +53,11 @@ const Signin = () => {
         email: '',
         password: '',
         passwordRepeat: '',
-        role: 'admin',
+        role: '',
         profilePictureUrl: '',
         phoneNumber: '',
       });
-      window.location.href = "/";
+      window.location.href = "/login";
     } catch (error) {
       console.log('Error while signing up:', error);
     }
@@ -66,7 +68,7 @@ const Signin = () => {
 
   console.log(userData)
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', minHeight: '100vh' }}>
+    <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', minHeight: '100vh' ,marginTop:"20px",marginBottom:"20px"}}>
      
       <Form className="background p-4" onSubmit={handleSubmit}>
         <h3 className="mb-4">Sign In</h3>
@@ -75,33 +77,77 @@ const Signin = () => {
         <img style={{width:"200px",height: "200px", borderRadius: "50%"}} src={img} alt='gambar'/>
       </div>
 
-        <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" name="name" value={userData.name} onChange={handleChange} />
-        </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter name"
+          name="name"
+          value={userData.name}
+          onChange={handleChange}
+          pattern="[A-Za-z\s]+"
+          maxLength={30}
+          required
+        />
+        <Form.Control.Feedback type="invalid">
+          Name is required and should contain only letters.
+        </Form.Control.Feedback>
+      </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" name="email" value={userData.email} onChange={handleChange} />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter password" name="password" value={userData.password} onChange={handleChange} />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPasswordRepeat">
           <Form.Label>Repeat Password</Form.Label>
           <Form.Control type="password" placeholder="Enter password again" name="passwordRepeat" value={userData.passwordRepeat} onChange={handleChange} />
         </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicRole">
+        <Form.Label>Role</Form.Label>
+        <div>
+          <Form.Check
+            type="radio"
+            label="Admin"
+            name="role"
+            value="admin"
+            checked={userData.role === 'admin'}
+            onChange={handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="User"
+            name="role"
+            value="user"
+            checked={userData.role === 'user'}
+            onChange={handleChange}
+          />
+        </div>
+      </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicProfilePictureUrl">
           <Form.Label>Profile Picture URL</Form.Label>
           <Form.Control type="file" placeholder="Enter profile picture URL" accept="image/*"  name="profilePictureUrl" value={userData.profilePictureUrl} onChange={handleChange}  onBlur={handleImageChange}/>
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
           <Form.Label>Phone Number</Form.Label>
           <Form.Control type="text" placeholder="Enter phone number" name="phoneNumber" value={userData.phoneNumber} onChange={handleChange} />
         </Form.Group>
+
         <Button variant="primary" type="submit" className="w-100">
           Submit
         </Button>
+        
+        <Link as={Link} style={{textDecoration:"none",marginTop:"10px" ,marginBottom:"10px"}} to="/login" className="forgot-password text-right mt-2">
+            Sudah punya akun
+          </Link>
       </Form>
     </div>
   );

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import ImageUpload from "../../components/upload/uploadImg";
+import axios from "axios";
 
 const AddFood = () => {
   const [food, setFood] = useState({
@@ -8,6 +10,9 @@ const AddFood = () => {
     imageUrl: "",
     ingredients: [""],
   });
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imgUrl, setImgUrl] = useState(null);
+  console.log(food)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -55,18 +60,64 @@ const AddFood = () => {
       });
   
       if (response.ok) {
-        console.log("Food added successfully");
-        // tambahkan kode untuk menampilkan pesan sukses atau melakukan navigasi ke halaman lain
-      } else {
-        console.log(response);
-        // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
+         // Setelah food berhasil dibuat, tampilkan pesan konfirmasi
+    const confirmCreateAgain = window.confirm('Food berhasil dibuat! Apakah Anda ingin membuat lagi?');
+    if (confirmCreateAgain) {
+      // Jika pengguna ingin membuat lagi, reset form atau lakukan tindakan lainnya
+      setFood({
+        name: '',
+        description: '',
+        imageUrl: '',
+        ingredients: [''],
+      });
+      setSelectedImage(null);
+      setImgUrl(null);
+    } else {
+      window.location.href = "/allfood";
+    }
       }
     } catch (error) {
       console.log(error);
       // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
     }
   };
-  
+
+
+
+  const handleImageChangeImg = (event) => {
+    setSelectedImage(event.target.files[0]);
+  };
+
+  const handleImageUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+
+      const headers = {
+        apiKey: process.env.REACT_APP_APIKEY,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'multipart/form-data',
+      };
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/v1/upload-image`,
+        formData,
+        { headers }
+      );
+      const url = response.data.url
+      setImgUrl(url)
+      setFood({ ...food, imageUrl: url });
+
+      console.log('Response:', url.url);
+      // Handle the response
+
+
+    } catch (error) {
+      console.log('Error while uploading image:', error);
+      // Handle the error
+    }
+  };
+
 
   return (
     <Container className="bg-white p-3" style={{ width: "80vw", margin: "20px" }}>
@@ -89,9 +140,20 @@ const AddFood = () => {
 
         <Form.Group controlId="imageUrl">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="file" name="imageUrl" onChange={handleFileInputChange} />
-        </Form.Group>
+          <Form.Label>Select an image</Form.Label>
+        <Form.Control
+          type="file"
+          accept="image/*"
+          onChange={handleImageChangeImg}
+        />
+         <Button variant="primary" onClick={handleImageUpload} >
+        Upload Image
+      </Button>
 
+        </Form.Group>
+        
+     
+     
         <Form.Group controlId="ingredients" style={{ marginTop: "10px" }}>
           <Form.Label>Ingredients</Form.Label>
           {food.ingredients.map((ingredient, index) => (

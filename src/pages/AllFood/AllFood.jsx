@@ -5,6 +5,8 @@ import "./AllFood.css";
 import like from "../assets/heart-shape.png";
 import likes from "../assets/hearts.png";
 import Ratings from "./ratings";
+import FoodDetails from "./details";
+import EditFoodModal from "./editFood";
 
 const AllFood = () => {
   const [dataFood, setDataFood] = useState([]);
@@ -128,41 +130,50 @@ const AllFood = () => {
 
  
   return (
-    <Container fluid className="py-5 min-vh-100 ">
-      <h1 className="title text-center">All Food</h1>
-      <div className="d-flex flex-wrap justify-content-center">
-        {dataFood.map((food, index) => (
-          <Card
-            key={food.id}
-            style={{ width: "18rem", marginBottom: "30px", marginRight: "20px" }}
-          >
-            <Card.Img
-              variant="top"
-              src={food.imageUrl}
-              alt="recipe image"
-              className="card-img"
+<Container fluid className="py-5 min-vh-100 ">
+  <h1 className="title text-center">All Food</h1>
+  <div className="d-flex flex-wrap justify-content-center">
+    {dataFood.map((food, index) => (
+      <Card
+        key={food.id}
+        style={{ width: "18rem", marginBottom: "30px", marginRight: "20px", position: "relative" }}
+      >
+        <Card.Img
+          variant="top"
+          src={food.imageUrl}
+          alt="recipe image"
+          className="card-img"
+        />
+        <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+          <Button style={{ background: "white", border: "none",borderRadius: "50%" ,width :"45px" , height: "45px"}}>
+            <img
+              onClick={() => handleLikeToggle(food.id)}
+              src={food.isLiked ? likePhoto : likePhoto}
+              alt="like"
+              style={{ width: "20px", cursor: "pointer" }}
             />
-            <Card.Body>
-              <Card.Title style={{ textAlign: "center" }}>{food.name}</Card.Title>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="warning">Detail</Button>
-                <Button style={{ background: "none", border: "none" }}>
-                  <img
-                    onClick={() => handleLikeToggle(food.id)}
-                    src={food.isLiked ? likePhoto : likePhoto}
-                    alt="like"
-                    style={{ width: "20px", marginLeft: "10px", cursor: "pointer" }}
-                  />
-                </Button>
-              
-      <Ratings idFood={food.id}/>
+          </Button>
+        </div>
+        <Card.Body>
+          <Card.Title style={{ textAlign: "center" }}>{food.name}</Card.Title>
+        <div style={{display: "flex" , justifyContent: "space-between"}}>
+        <FoodDetails  food={food} />
+            <Ratings idFood={food.id} style={{}}/>
+            <EditFoodModal idFood={food.id} style={{}}/>
 
-              </div>
-            </Card.Body>
-          </Card>
-        ))}
-      </div>
-    </Container>
+        </div>
+        
+            <div style={{ marginTop: "10px", display: "flex" , justifyContent: "space-around" }}>
+              <p style={{  marginBottom: "0" }}>Rating: {food.rating}</p>
+              <p style={{  marginBottom: "0"}}>Total likes: {food.totalLikes}</p>
+            </div>"
+        </Card.Body>
+      </Card>
+    ))}
+  </div>
+</Container>
+
+
   );
   
 };

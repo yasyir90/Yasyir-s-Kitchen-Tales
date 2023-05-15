@@ -80,9 +80,12 @@ function NavbarH() {
                   </NavDropdown.Item>
                 )}
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => localStorage.clear()}>
-                  Logout
-                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => {
+  localStorage.clear();
+  window.location.reload();
+}}>
+  Logout
+</NavDropdown.Item>
               </NavDropdown>
             ) : (
               <div className='d-flex'>

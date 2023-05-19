@@ -35,7 +35,7 @@ function NavbarH() {
 
   
   return (
-    <Navbar expand="lg" sticky="top" style={{ backgroundColor: '#3c4a3e' }}>
+    <Navbar expand="lg" sticky="top" style={{ backgroundColor: '#222' }}>
       <Container fluid className="px-lg-5">
         <Navbar.Toggle aria-controls="navbarSupportContent" id="togle" />
         <Navbar.Collapse id="navbarSupportContent">

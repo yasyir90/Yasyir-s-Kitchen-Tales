@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import ChangeRole from './changeRole';
+import profile from '../assets/review.png'
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
@@ -89,10 +90,14 @@ const EditProfile = () => {
 
   return (
     <div>
-        <Button variant="primary" onClick={handleShowModal} style={{marginRight:"20px",marginTop:"20px"}}>
-        Edit Profile
+
+    <div style={{display:"flex" ,justifyContent:"space-between",marginTop:"20px"}}>
+    <Button onClick={handleShowModal} style={{background:"none",border:"none",marginTop:"15px"}}>
+        <img src={profile} alt="role" style={{width:"40px",backgroundColor:"#222",padding:"5px",borderRadius:"50%",cursor:"pointer",border:"2px solid #32cd32"}}/>
       </Button>
       <ChangeRole/>
+    </div>
+
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Profile</Modal.Title>

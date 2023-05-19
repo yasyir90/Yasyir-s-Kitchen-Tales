@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import rolee from '../assets/businessman.png'
 
 const ChangeRole = () => {
     const [showModal, setShowModal] = useState(false);
@@ -79,8 +80,8 @@ const ChangeRole = () => {
   return (
     <div>
       <br/>
-      <Button variant="primary" onClick={handleOpenModal}>
-        Change Role
+      <Button onClick={handleOpenModal} style={{background:"none",border:"none",marginBottom:"10px"}}>
+      <img src={rolee} alt="role" style={{width:"40px",backgroundColor:"#222",padding:"5px",borderRadius:"50%",border:"2px solid #32cd32"}}/>
       </Button>
 
       <Modal show={showModal} onHide={handleCloseModal}>

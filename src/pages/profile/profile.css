@@ -1,0 +1,45 @@
+.imgProfile{
+  transform: translateY(-50px);
+}
+
+
+.containerData{
+    transition: 0.5s;
+}
+
+
+.pEmail{
+    color: #222;
+    transform: translateY(-33px);
+    display:none;
+    transition: 0.5s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.kotakText{
+    /* background-color: #51f485; */
+    background-image: url(../assets/new-email-outlined-envelope-back.png);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-40px);
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    transition: 0.5s;
+}
+.containerData:hover .kotakText{
+     border-radius: 10px;
+     width: 200px;
+     height: 40px;
+     transform: translateY(0px);
+     background-color: #32cd32;
+     margin-top: 10px;
+}
+
+.containerData:hover .kotakText .pEmail{
+    transform:translateY(0) ;
+    display: block;
+    transition: 0.5s;
+}

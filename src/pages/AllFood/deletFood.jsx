@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import del from "../assets/delete.png"
 
 function DeleteFood({ idFood }) {
   const [showModal, setShowModal] = useState(false);
@@ -34,8 +35,8 @@ function DeleteFood({ idFood }) {
   return (
     <div className="food-item">
       <div className="header">
-        <Button onClick={() => setShowModal(true)} variant="danger">
-          Delete
+        <Button onClick={() => setShowModal(true)} style={{background:"none",border:"none"}}>
+         <img src={del} style={{width:"40px" , padding:"5px" , backgroundColor:"#DC3545",borderRadius:"50%"}}  alt="delet"/>
         </Button>
       </div>
 

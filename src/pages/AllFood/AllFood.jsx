@@ -137,7 +137,7 @@ const AllFood = () => {
     {dataFood.map((food, index) => (
       <Card
         key={food.id}
-        style={{ width: "18rem", marginBottom: "30px", marginRight: "20px", position: "relative" }}
+        style={{ width: "18rem", marginBottom: "30px", marginRight: "20px", position: "relative",backgroundColor:"#111" }}
       >
         <Card.Img
           variant="top"
@@ -156,21 +156,17 @@ const AllFood = () => {
           </Button>
         </div>
         <Card.Body>
-          <Card.Title style={{ textAlign: "center" }}>{food.name}</Card.Title>
+          <Card.Title style={{ textAlign: "center" ,color:"whitesmoke"}}>{food.name}</Card.Title>
 
-        <div style={{display: "flex" , justifyContent: "space-between",marginBottom:"20px"}}>
-     
-        {localStorage.getItem("role") === "admin" && (
+
+         <div style={{display: "flex" , justifyContent: "space-between"}}>
+         {localStorage.getItem("role") === "admin" && (
                 <DeleteFood idFood={food.id} style={{}}/>
             )}
                 {localStorage.getItem("role") === "admin" && (
                  <EditFoodModal idFood={food.id} style={{}}/>
             )}
 
-
-        </div>
-
-         <div style={{display: "flex" , justifyContent: "space-between"}}>
          <Ratings idFood={food.id} style={{}}/>
             <FoodDetails  food={food} />
      
@@ -178,8 +174,8 @@ const AllFood = () => {
         
         
             <div style={{ marginTop: "10px", display: "flex" , justifyContent: "space-around" }}>
-              <p style={{  marginBottom: "0" }}>Rating: {food.rating}</p>
-              <p style={{  marginBottom: "0"}}>Total likes: {food.totalLikes}</p>
+              <p style={{  marginBottom: "0",color:"white" }}>Rating: {food.rating}</p>
+              <p style={{  marginBottom: "0" ,color:"white"}}>Total likes: {food.totalLikes}</p>
             </div>"
         </Card.Body>
       </Card>

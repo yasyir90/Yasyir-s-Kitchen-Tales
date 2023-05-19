@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import ratingImg from "../assets/starred-list-on-paper.png"
 
 const Ratings = ({ idFood }) => {
   const [ratings, setRatings] = useState([]);
@@ -94,8 +95,8 @@ const Ratings = ({ idFood }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        View Ratings
+      <Button variant="primary" onClick={handleShow} style={{background:"none" , border:"none"}}>
+       <img src={ratingImg} alt="ratings" style={{width:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%"}}/>
       </Button>
 
       <Modal show={showModal} onHide={handleClose}>

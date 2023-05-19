@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button , Form} from "react-bootstrap";
+import edit from "../assets/edit-list.png"
 
 const EditFoodModal = ({ idFood }) => {
     const [food, setFood] = useState({
@@ -75,8 +76,8 @@ const EditFoodModal = ({ idFood }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Edit Food
+      <Button variant="primary" onClick={handleShow} style={{background:"none",border:"none"}}>
+       <img src={edit} alt="edit" style={{width:"40px",backgroundColor:"#005b8f",padding:'5px',borderRadius:"50%"}}/>
       </Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

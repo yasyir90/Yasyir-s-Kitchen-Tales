@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import detail from '../assets/research-work.png'
 
 
 function FoodDetails({ food }) {
@@ -16,8 +17,8 @@ function FoodDetails({ food }) {
   return (
     <div className="food-item">
       <div className="header">
-        <Button onClick={handleDetail} variant="warning">
-          Detail
+        <Button onClick={handleDetail} style={{background:'none',border:"none"}}>
+         <img src={detail} alt="detail" style={{width:"40px",padding:"5px",backgroundColor:"#ffcc00",borderRadius:"50%"}}/>
         </Button>
       </div>
 

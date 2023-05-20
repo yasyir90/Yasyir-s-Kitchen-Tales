@@ -2,6 +2,9 @@
   transform: translateY(-50px);
 }
 
+.containerCard{
+    width: 90%;
+}
 
 .containerData{
     transition: 0.5s;
@@ -43,3 +46,10 @@
     display: block;
     transition: 0.5s;
 }
+
+/* @media screen and (max-width:680px){
+    containerCard{
+        width: 80%;
+    }
+
+} */

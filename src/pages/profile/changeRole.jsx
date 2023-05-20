@@ -43,10 +43,11 @@ const ChangeRole = () => {
             `${process.env.REACT_APP_BASE_URL}/api/v1/user`,
             config
           );
-          const roles =JSON.stringify(responseRole.data)
+          const roles =responseRole.data.user.role
         
           localStorage.setItem("role", roles);
            window.location.reload();
+           console.log(roles)
         }
     
      

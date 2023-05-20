@@ -11,8 +11,9 @@ import DeleteFood from "./deletFood";
 
 const AllFood = () => {
   const [dataFood, setDataFood] = useState([]);
-  const [likePhoto, setLikePhoto] = useState([like]);
-  
+  const [likePhoto, setLikePhoto] = useState('');
+ 
+  // console.log(dataFood)
 
 
   useEffect(() => {
@@ -40,11 +41,10 @@ const AllFood = () => {
               headers,
             });
             const foodData = await response.json();
-            const foodDatas = foodData.data.name;
-            if(foodDatas === 'gado gado'){
-              setLikePhoto(likes)
-            }
-            // console.log(foodDatas);
+            const foodDatas = foodData.data.isLike;
+            console.log(foodDatas)
+            
+           
           } catch (error) {
             console.log("Error while fetching food data:", error);
           }
@@ -80,56 +80,52 @@ const AllFood = () => {
         }
       );
       const result = await response.json();
-      setDataFood(prevState =>
-        prevState.map(food =>
-          food.id === id ? { ...food, isLiked: result.like } : food
-        )
-      );
+      setLikePhoto(result.message)
+      console.log(result.message)
     } catch (error) {
       console.log("Error like/unlike:", error);
     }
   };
   
-  // const handleUnLike = async (id) => {
-  //   const token = localStorage.getItem("token");
-  //   try {
-  //     const headers = {
-  //       apiKey: process.env.REACT_APP_APIKEY,
-  //       Authorization: `Bearer ${token}`,
-  //       "Content-Type": "application/json",
-  //     };
-  //     const data = { foodId: id };
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BASE_URL}/api/v1/unlike`,
-  //       {
-  //         method: "POST",
-  //         headers,
-  //         body: JSON.stringify(data),
-  //       }
-  //     );
-  //     const result = await response.json();
-  //     setDataFood(prevState =>
-  //       prevState.map(food =>
-  //         food.id === id ? { ...food, isLiked: result.like } : food
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.log("Error unlike:", error);
-  //   }
-  // };
+  const handleUnLike = async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      const headers = {
+        apiKey: process.env.REACT_APP_APIKEY,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+      const data = { foodId: id };
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/v1/unlike`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await response.json();
+      setLikePhoto(result.message)
+      console.log(result.message)
+     
+    } catch (error) {
+      console.log("Error unlike:", error);
+    }
+  };
   
   
-  const handleLikeToggle = async (id, isLiked) => {
-    const like = isLiked ? false : true;
-    await handleLike(id, like);
-    setDataFood(prevState =>
-      prevState.map(food =>
-        food.id === id ? { ...food, isLiked: !isLiked } : food
-      )
-    );
+  const handleLikeToggle = async (id) => {
+    await handleLike(id);
+    if(likePhoto === 'Food Liked'){
+      await handleUnLike(id);
+    }
+    if(likePhoto === 'Food already liked'){
+      await handleUnLike(id);
+    }
   };
 
  
+
   return (
 <Container fluid className="py-5 min-vh-100 ">
   <h1 className="title text-center">All Food</h1>
@@ -149,7 +145,7 @@ const AllFood = () => {
           <Button style={{ background: "white", border: "none",borderRadius: "50%" ,width :"45px" , height: "45px"}}>
             <img
               onClick={() => handleLikeToggle(food.id)}
-              src={food.isLiked ? likePhoto : likePhoto}
+              src={food.isLike ? likes : like}
               alt="like"
               style={{ width: "20px", cursor: "pointer" }}
             />

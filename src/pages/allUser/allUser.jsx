@@ -31,7 +31,7 @@ const AllUser = () => {
   }, []);
 
   return (
-<Container className="my-4">
+<Container className="my-4" style={{width:"80%"}}>
   {userData.data && userData.data.map((user) => (
     <Row key={user.id} style={{background:"#111",marginTop:"20px",borderRadius:"30px"}}>
       <div style={{width:"100%",height:"70px",background:"#32cd32",borderTopRightRadius:"30px", borderTopLeftRadius:"30px"}}></div>

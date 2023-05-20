@@ -10,7 +10,6 @@ const EditFoodModal = ({ idFood }) => {
         ingredients: [""],
       });
   const [showModal, setShowModal] = useState(false);
-  console.log(food)
     
       const handleInputChange = (event) => {
         const { name, value } = event.target;

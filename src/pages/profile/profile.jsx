@@ -36,7 +36,7 @@ const Profile = () => {
 
 
   return (
-    <Container className="my-4"style={{borderRadius:"20px"}}>
+    <Container className="my-4 containerCard"style={{borderRadius:"20px"}}>
       <Row style={{background:"#111",marginTop:"20px",borderRadius:"30px"}}>
         <div style={{width:"100%",height:"70px",background:"#32cd32",borderTopRightRadius:"30px", borderTopLeftRadius:"30px"}}> <EditProfile/></div>
         <Col xs={12} md={4} className="d-flex justify-content-center align-items-center">

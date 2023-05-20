@@ -3,11 +3,11 @@
     justify-content: space-between;
   }
   #togle {
-    background-color: #32cd32;
+    background-color: #dc3545;
   }
   .logo {
     font-family: 'Righteous', cursive;
-    color: #32cd32;
+    color: #dc3545;
     font-size: 50px;
     font-weight: bold;
   }
@@ -36,7 +36,7 @@
 }
 
   .nav-link:hover {
-    color: #32cd32;
+    color: #dc3545;
   }
   .link .nav-link:active,
 .link .nav-link:visited {
@@ -50,5 +50,5 @@
   left: -60%;
 }
 .dropdown-item {
-  color: #32cd32;
+  color: #005b8f;
 }

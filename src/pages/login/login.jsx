@@ -36,7 +36,6 @@ export default class Login extends Component {
         headers: { 'apiKey': `${apikey}` }
       })
       .then(response => {
-        console.log(response.data);
         const token = response.data.token;
         localStorage.setItem("token", token);
 
@@ -53,7 +52,6 @@ export default class Login extends Component {
         localStorage.setItem("id", id);
         // Redirect to home page or do something else
         window.location.href = "/";
-        console.log(token)
       })
       .catch(error => {
         console.log(error);

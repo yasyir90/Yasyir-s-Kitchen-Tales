@@ -14,7 +14,6 @@ const AddFood = () => {
     ingredients: [""],
   });
   const [selectedImage, setSelectedImage] = useState(null);
-  console.log(food)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

@@ -47,7 +47,6 @@ const ChangeRole = () => {
         
           localStorage.setItem("role", roles);
            window.location.reload();
-           console.log(roles)
         }
     
      

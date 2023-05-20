@@ -32,7 +32,7 @@ const Profile = () => {
       fetchUserData();
     }
   }, []);
-  console.log(userData.user)
+
 
 
   return (

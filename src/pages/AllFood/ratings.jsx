@@ -64,7 +64,10 @@ const Ratings = ({ idFood }) => {
         { headers }
       );
 
-      console.log('Response:', response);
+      if(response.status === 200){
+        window.location.reload();
+      }
+   
       // Handle the response
     } catch (error) {
       console.log('Error while rating food:', error);
@@ -136,13 +139,13 @@ const Ratings = ({ idFood }) => {
             <img src={submit} alt= "upload"  style={{width:"20px",height:"20px",}}/>
             </Button>
       <Modal show={showModalRating} onHide={handleCloseModalRating}>
-        <Modal.Header closeButton>
-          <Modal.Title>Rate Food</Modal.Title>
+        <Modal.Header closeButton style={{background:"#111" }}>
+          <Modal.Title style={{background:"#111",color:"white",fontFamily:"Righteous" }}>Rate Food</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{background:"#111" }}>
           <Form onSubmit={handleSubmitRating}>
             <Form.Group controlId="formRating">
-              <Form.Label>Rating</Form.Label>
+              <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Rating</Form.Label>
               <Form.Control
                 as="select"
                 value={rating}
@@ -156,7 +159,7 @@ const Ratings = ({ idFood }) => {
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="formReview">
-              <Form.Label>Review</Form.Label>
+              <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Review</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -164,8 +167,8 @@ const Ratings = ({ idFood }) => {
                 onChange={handleReviewChange}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-            <img src={submit} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"none",padding:"5px",borderRadius:"50%"}}/>
+            <Button variant="primary" type="submit" style={{marginTop:"20px"}}>
+        Rate
             </Button>
           </Form>
         </Modal.Body>

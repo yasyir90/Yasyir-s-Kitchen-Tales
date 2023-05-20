@@ -40,12 +40,11 @@ const Signin = () => {
       const headers = {
         apiKey: process.env.REACT_APP_APIKEY,
       };
-      const response = await axios.post(
+       await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/v1/register`,
         userData,
         { headers }
       );
-      console.log('Response:', response);
       // Clear the form fields
       setUserData({
         name: '',
@@ -85,7 +84,6 @@ const Signin = () => {
       const url = response.data.url
       setUserData({ ...userData, profilePictureUrl: url });
 
-      console.log('Response:', url.url);
       // Handle the response
 
 
@@ -97,8 +95,6 @@ const Signin = () => {
 
  
 
-
-  console.log(userData)
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', minHeight: '100vh' ,marginTop:"20px",marginBottom:"20px"}}>
      

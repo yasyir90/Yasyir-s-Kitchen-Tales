@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import del from "../assets/delete.png"
+import negative from '../assets/cancel-button.png'
 
 function DeleteFood({ idFood }) {
   const [showModal, setShowModal] = useState(false);
@@ -31,6 +32,7 @@ function DeleteFood({ idFood }) {
       // Handle the error
     }
   };
+  const handleClose = () => setShowModal(false);
 
   return (
     <div className="food-item">
@@ -42,11 +44,14 @@ function DeleteFood({ idFood }) {
 
       {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmation</Modal.Title>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Confirmation</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleClose} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this food?</Modal.Body>
-        <Modal.Footer>
+        <Modal.Body style={{background:"#222",color:"white",fontFamily:"Righteous" }}>Are you sure you want to delete this food?</Modal.Body>
+        <Modal.Footer style={{background:"#222" }}>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>

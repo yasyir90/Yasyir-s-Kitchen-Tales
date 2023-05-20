@@ -1,7 +1,9 @@
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown,Modal,Button } from 'react-bootstrap';
 import './navbar.css';
+import React, { useState } from "react";
 import logo from './logo.png';
 import { Link } from 'react-router-dom';
+import negative from '../assets/cancel-button.png'
 // import { useState , useEffect} from 'react';
 // import axios from 'axios';
 
@@ -31,7 +33,14 @@ function NavbarH() {
   //     fetchUserData();
   //   }
   // }, []);
+  const [showModal, setShowModal] = useState(false)
 
+  const handleLogout = async () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+  const handleClose = () => setShowModal(false);
 
   
   return (
@@ -77,10 +86,7 @@ function NavbarH() {
                     All User
                  </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => {
-  localStorage.clear();
-  window.location.reload();
-}}>
+                <NavDropdown.Item onClick={() => setShowModal(true)}>
   Logout
 </NavDropdown.Item>
               </NavDropdown>
@@ -97,6 +103,26 @@ function NavbarH() {
           </Nav>
         </Navbar.Collapse>
       </Container>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Confirmation</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleClose} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
+        </Modal.Header>
+        <Modal.Body style={{background:"#222",color:"white",fontFamily:"Righteous" }}>Are you sure you want to Logout?</Modal.Body>
+        <Modal.Footer style={{background:"#222" }}>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleLogout}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
     </Navbar>
   );
 }

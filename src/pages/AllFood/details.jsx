@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import detail from '../assets/research-work.png'
+import negative from '../assets/cancel-button.png'
 
 
 function FoodDetails({ food }) {
@@ -23,18 +24,18 @@ function FoodDetails({ food }) {
       </div>
 
       <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{food.name} Details</Modal.Title>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title  style={{color:"white",fontFamily:"Righteous"}}>{food.name} Details</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleClose} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
         </Modal.Header>
-        <Modal.Body>
-          <p>Ingredients: {food.ingredients.join(", ")}</p>
-          <p>Detail: {food.detail}</p>
-          <p>Description: {food.description}</p>
+        <Modal.Body style={{background:"#222" }}>
+          <p   style={{color:"white",fontFamily:"Righteous"}}>Ingredients: {food.ingredients.join(", ")}</p>
+          <p   style={{color:"white",fontFamily:"Righteous"}}>Description: {food.description}</p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+        <Modal.Footer style={{background:"#222" }}>
+         
         </Modal.Footer>
       </Modal>
     </div>

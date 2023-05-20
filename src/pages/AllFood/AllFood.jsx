@@ -31,25 +31,6 @@ const AllFood = () => {
         );
         const dataAllFood = response.data.data;
         setDataFood(dataAllFood);
-  
-        const idFoods = dataAllFood.map((item) => item.id);
-  
-        idFoods.forEach(async (id) => {
-          try {
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/foods/${id}`, {
-              method: "GET",
-              headers,
-            });
-            const foodData = await response.json();
-            const foodDatas = foodData.data.isLike;
-            console.log(foodDatas)
-            
-           
-          } catch (error) {
-            console.log("Error while fetching food data:", error);
-          }
-        });
-  
    
       } catch (error) {
         console.log("Error while fetching data:", error);
@@ -81,7 +62,6 @@ const AllFood = () => {
       );
       const result = await response.json();
       setLikePhoto(result.message)
-      console.log(result.message)
     } catch (error) {
       console.log("Error like/unlike:", error);
     }
@@ -106,7 +86,6 @@ const AllFood = () => {
       );
       const result = await response.json();
       setLikePhoto(result.message)
-      console.log(result.message)
      
     } catch (error) {
       console.log("Error unlike:", error);

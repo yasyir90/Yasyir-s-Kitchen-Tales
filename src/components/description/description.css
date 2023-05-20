@@ -1,6 +1,6 @@
 .logo {
     font-family: 'Righteous', cursive;
-    color: #32cd32;
+    color: #dc3545;
     font-size: 50px;
     font-weight: bold;
   }
@@ -23,7 +23,7 @@
 
 .button{
   color: white;
-  border: 1px  solid #32cd32;
+  border: 1px  solid #dc3545;
   text-decoration: none;
   padding: 6px;
   border-radius:10px;

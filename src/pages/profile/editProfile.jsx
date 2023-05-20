@@ -34,13 +34,12 @@ const EditProfile = () => {
         'Content-Type': 'application/json'
       };
 
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/v1/update-profile`,
         userData,
         { headers }
       );
 
-      console.log('Response:', response);
       window.location.reload();
       // Handle the response
     } catch (error) {

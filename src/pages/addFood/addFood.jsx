@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-
+import upload from '../assets/cloud-storage-uploading-option.png'
+import add from '../assets/positive.png'
+import positive from "../assets/add-button-with-plus-symbol-in-a-black-circle.png"
+import negative from '../assets/cancel-button.png'
 import axios from "axios";
 
 const AddFood = () => {
@@ -112,15 +115,15 @@ const AddFood = () => {
 
 
   return (
-    <Container className="bg-white p-3" style={{ width: "80vw", margin: "20px" }}>
+    <Container className=" p-3" style={{ width: "80vw", margin: "20px",background:"#222",borderRadius:"20px" }}>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name">
-          <Form.Label>Name</Form.Label>
+          <Form.Label style={{color:"white",fontFamily:"Righteous"}}>Name</Form.Label>
           <Form.Control type="text" name="name" value={food.name} onChange={handleInputChange} />
         </Form.Group>
 
         <Form.Group controlId="description">
-          <Form.Label>Description</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Description</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -131,23 +134,22 @@ const AddFood = () => {
         </Form.Group>
 
         <Form.Group controlId="imageUrl">
-          <Form.Label>Image</Form.Label>
-          <Form.Label>Select an image</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Select an image</Form.Label>
         <Form.Control
           type="file"
           accept="image/*"
           onChange={handleImageChangeImg}
         />
-         <Button variant="primary" onClick={handleImageUpload} >
-        Upload Image
+         <Button style={{background:"none",border:"none",marginTop:"20px" }} onClick={handleImageUpload} >
+         <img src={upload} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%"}}/>
       </Button>
-
+    
         </Form.Group>
         
      
      
         <Form.Group controlId="ingredients" style={{ marginTop: "10px" }}>
-          <Form.Label>Ingredients</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Ingredients</Form.Label>
           {food.ingredients.map((ingredient, index) => (
             <div key={index} className="d-flex">
               <Form.Control
@@ -156,18 +158,18 @@ const AddFood = () => {
                 onChange={(e) => handleIngredientsChange(e, index)}
                 className="mb-2 me-2"
               />
-              <Button variant="danger" onClick={() => handleRemoveIngredient(index)} className="mb-2">
-                -
+              <Button style={{background:"none",border:"none", }} variant="danger" onClick={() => handleRemoveIngredient(index)} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
               </Button>
             </div>
           ))}
-          <Button variant="success" onClick={handleAddIngredient} style={{ marginTop: "10px", marginLeft: "20px" }}>
-            +
+          <Button  variant="success" onClick={handleAddIngredient} style={{ marginTop: "5px",background:"none",border:"none", }}>
+          <img src={positive} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#198754",padding:"5px",borderRadius:"50%"}}/>
           </Button>
         </Form.Group>
 
         <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
-          Add Food
+        <img src={add} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"none",padding:"5px",borderRadius:"50%"}}/> Add Food
         </Button>
         </Form>
         </Container>

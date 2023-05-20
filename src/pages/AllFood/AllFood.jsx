@@ -122,6 +122,7 @@ const AllFood = () => {
     if(likePhoto === 'Food already liked'){
       await handleUnLike(id);
     }
+    window.location.reload();
   };
 
  

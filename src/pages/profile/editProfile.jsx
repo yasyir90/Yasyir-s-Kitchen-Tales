@@ -93,7 +93,7 @@ const EditProfile = () => {
 
     <div style={{display:"flex" ,justifyContent:"space-between",marginTop:"20px"}}>
     <Button onClick={handleShowModal} style={{background:"none",border:"none",marginTop:"15px"}}>
-        <img src={profile} alt="role" style={{width:"40px",backgroundColor:"#222",padding:"5px",borderRadius:"50%",cursor:"pointer",border:"2px solid #32cd32"}}/>
+        <img src={profile} alt="role" style={{width:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%",cursor:"pointer",border:"2px solid #dc3545"}}/>
       </Button>
       <ChangeRole/>
     </div>

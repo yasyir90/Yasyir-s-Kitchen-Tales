@@ -12,7 +12,7 @@
 
 
 .pEmail{
-    color: #222;
+    color: whitesmoke;
     transform: translateY(-33px);
     display:none;
     transition: 0.5s;
@@ -37,7 +37,7 @@
      width: 200px;
      height: 40px;
      transform: translateY(0px);
-     background-color: #32cd32;
+     background-color: #dc3545;
      margin-top: 10px;
 }
 

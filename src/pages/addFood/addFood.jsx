@@ -3,8 +3,8 @@ import { Container, Form, Button } from "react-bootstrap";
 import upload from '../assets/cloud-storage-uploading-option.png'
 import add from '../assets/positive.png'
 import positive from "../assets/add-button-with-plus-symbol-in-a-black-circle.png"
-import negative from '../assets/cancel-button.png'
 import axios from "axios";
+import minus from '../assets/minus.png'
 
 const AddFood = () => {
   const [food, setFood] = useState({
@@ -159,7 +159,7 @@ const AddFood = () => {
                 className="mb-2 me-2"
               />
               <Button style={{background:"none",border:"none", }} variant="danger" onClick={() => handleRemoveIngredient(index)} className="mb-2">
-              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              <img src={minus} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
               </Button>
             </div>
           ))}

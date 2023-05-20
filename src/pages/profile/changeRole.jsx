@@ -82,7 +82,7 @@ const ChangeRole = () => {
     <div>
       <br/>
       <Button onClick={handleOpenModal} style={{background:"none",border:"none",marginBottom:"10px"}}>
-      <img src={rolee} alt="role" style={{width:"40px",backgroundColor:"#222",padding:"5px",borderRadius:"50%",border:"2px solid #32cd32"}}/>
+      <img src={rolee} alt="role" style={{width:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%",border:"2px solid #dc3545"}}/>
       </Button>
 
       <Modal show={showModal} onHide={handleCloseModal}>

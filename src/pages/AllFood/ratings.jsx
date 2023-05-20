@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import ratingImg from "../assets/starred-list-on-paper.png"
-
+import negative from '../assets/cancel-button.png'
+import submit from '../assets/rating.png'
 const Ratings = ({ idFood }) => {
   const [ratings, setRatings] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -99,15 +100,18 @@ const Ratings = ({ idFood }) => {
        <img src={ratingImg} alt="ratings" style={{width:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%"}}/>
       </Button>
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Ratings for {ratings.name}</Modal.Title>
+      <Modal show={showModal} >
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Ratings for {ratings.name}</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleClose} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{background:"#222" }}>
           {ratings.map((review) => (
             <div key={review.id} style={{ marginBottom: "20px" }}>
               <h5
-                style={{ fontSize: "18px", fontWeight: "bold", color: "#333" }}
+                style={{ fontSize: "18px", color:"white",fontFamily:"Righteous"}}
               >
                 {review.user.name}
               </h5>
@@ -126,8 +130,11 @@ const Ratings = ({ idFood }) => {
           ))}
         </Modal.Body>
 
-        <Modal.Footer>
-        <Button onClick={handleOpenModalRating}>Rate Food</Button>
+        <Modal.Footer style={{background:"#222" }}>   
+        <Button style={{backgroundColor:"#005b8f",padding:"5px",borderRadius:"10px",border:"none", display:"flex",alignItems:"center"}} onClick={handleOpenModalRating}>
+        <p style={{color:"white",fontFamily:"Righteous",marginRight:"10px",marginTop:"10px"}}>Rate Food :</p>
+            <img src={submit} alt= "upload"  style={{width:"20px",height:"20px",}}/>
+            </Button>
       <Modal show={showModalRating} onHide={handleCloseModalRating}>
         <Modal.Header closeButton>
           <Modal.Title>Rate Food</Modal.Title>
@@ -158,15 +165,12 @@ const Ratings = ({ idFood }) => {
               />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Submit
+            <img src={submit} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"none",padding:"5px",borderRadius:"50%"}}/>
             </Button>
           </Form>
         </Modal.Body>
       </Modal>
-
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+      
         </Modal.Footer>
 
       </Modal>

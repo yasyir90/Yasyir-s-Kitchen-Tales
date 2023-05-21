@@ -8,11 +8,11 @@ import './footer.css'
 
 function Footer() {
   return (
-    <footer className="bg-dark text-light py-0 bottom">
-      <Container style={{marginTop:"100px"}}>
+    <footer className="bg-dark text-light py-0 bottom" style={{paddingTop:"20px"}}>
+      <Container>
         <Row>
           <Col md={6} >
-          <h2  style={{color:"white",fontFamily:"Righteous",textAlign:"center"}}>Hubungi kami di:</h2>
+          <h2  style={{color:"white",fontFamily:"Righteous",textAlign:"center",marginTop:"50px"}}>Hubungi kami di:</h2>
           <ul className="list-inline" style={{marginTop:"20px",display:"flex",justifyContent:"center"}}>
 
               <li className="list-inline-item">
@@ -36,7 +36,7 @@ function Footer() {
    
           </Col>
           <Col md={6}>
-            <h2  style={{color:"white",fontFamily:"Righteous",textAlign:"center"}}>Ikuti kami di:</h2>
+            <h2  style={{color:"white",fontFamily:"Righteous",textAlign:"center" ,marginTop:"50px"}}>Ikuti kami di:</h2>
             <ul className="list-inline" style={{marginTop:"20px",display:"flex",justifyContent:"center"}}>
               <li className="list-inline-item">
               <div className='containerSosialMedia' >

@@ -3,6 +3,7 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import ChangeRole from './changeRole';
 import profile from '../assets/review.png'
+import negative from '../assets/cancel-button.png'
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
@@ -13,6 +14,15 @@ const EditProfile = () => {
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [show, setShow] = useState('none');
+  const [eror, setEror] = useState('');
+  const buttonStyle = {
+    display: show
+  };
+  const [succes, setSucces] = useState('');
+
+
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -41,9 +51,10 @@ const EditProfile = () => {
       );
 
       window.location.reload();
+           setEror('')
       // Handle the response
     } catch (error) {
-      console.log('Error while updating profile:', error);
+          setEror('Error because the input is empty or the email already exists')
       // Handle the error
     }
   };
@@ -66,13 +77,14 @@ const EditProfile = () => {
       );
       const url = response.data.url;
       setUserData({ ...userData, profilePictureUrl: url });
-
-      console.log('Response:', url.url);
-      alert('gambar dah siap')
+      setSucces('image uploade success')
+      setEror('')  
+      setShow('flex')
+      setEror('') 
       // Handle the response
     } catch (error) {
-      console.log('Error while uploading image:', error);
-      // Handle the error
+      setEror('The file has been entered incorrectly or there is a problems')  
+      setSucces('')
     }
   };
 
@@ -82,6 +94,7 @@ const EditProfile = () => {
 
   const handleShowModal = () => {
     setShowModal(true);
+
   };
 
 
@@ -98,14 +111,17 @@ const EditProfile = () => {
     </div>
 
       <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Profile</Modal.Title>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Edit Profile</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleCloseModal} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
         </Modal.Header>
-        <Modal.Body>
-            <h3>Edit Profile</h3>
+        <Modal.Body style={{background:"#222" }}>
+
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter name"
@@ -115,7 +131,7 @@ const EditProfile = () => {
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Email address</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -125,7 +141,7 @@ const EditProfile = () => {
           />
         </Form.Group>
         <Form.Group controlId="formBasicPhoneNumber">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Phone Number</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter phone number"
@@ -135,19 +151,20 @@ const EditProfile = () => {
           />
         </Form.Group>
         <Form.Group controlId="formBasicProfilePictureUrl">
-          <Form.Label>Profile Picture</Form.Label>
-          <Form.Label>Select an image</Form.Label>
+          <Form.Label  style={{color:"white",fontFamily:"Righteous"}}>Profile Picture</Form.Label>
         <Form.Control
           type="file"
           accept="image/*"
           onChange={handleImageChangeImg}
         />
-        <div style={{marginTop:"20px"}}>
+       <p className="text-danger mt-2">{eror}</p>
+       <p className="text-success mt-2">{succes}</p>
+        <div style={{marginTop:"20px",display:"flex"}}>
         <Button variant="primary" onClick={handleImageUpload} style={{marginRight:"20px"}} >
         Submit Picture
       </Button>
 
-      <Button variant="primary" type="submit" >
+      <Button variant="primary" type="submit" onSubmit={handleSubmit} style={buttonStyle}  >
          Update Profile
         </Button>
         </div>

@@ -1,9 +1,95 @@
 .bottom {
-    position: fixed;
-    top: 0;
+    bottom: 0;
     z-index: 999;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 0;
+  }
+
+  .pContactRed{
+    transform: translateY(0px);
+    background-color: #dc3545;
+    margin-top: 10px;
     padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    transition: 0.5s;
+  }
+  .pContactBlue{
+    transform: translateY(0px);
+    background-color: #005b8f;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    transition: 0.5s;
+  }
+  .pContactBlue p{
+    display: none;
+    font-weight: bold;
+  }
+  .pContactRed p{
+    display: none;
+    font-weight: bold;
+  }
+
+  .containerContact:hover .pContactBlue{
+    transform: translateY(50px);
+    border-radius: 10px;
+    width: 280px;
+    height: 40px;
+  }
+  .containerContact:hover .pContactBlue p{
+    display: block;
+  }
+
+  .containerContact:hover .pContactRed{
+    transform: translateY(50px);
+    border-radius: 10px;
+    width: 260px;
+    height: 40px;
+  }
+  .containerContact:hover .pContactRed p{
+    display: block;
+  }
+
+  .containerContact img{
+    transform: translateY(-50px) translateX(-5px);
+  }
+  .containerSosialMedia img{
+    transform: translateY(-45px);
+  }
+
+
+  .pSosmedGren{
+    transform: translateY(0px);
+    background-color: #dc3545;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    transition: 0.5s;
+  }
+  .pSosmedGren a{
+    color: whitesmoke;
+    text-decoration: none;
+    font-weight: bold;
+    display: none;
+  }
+
+  .containerSosialMedia:hover .pSosmedGren{
+    width: 150px;
+     border-radius: 10px;
+    height: 40px;
+    transform: translateY(50px);
+  }
+  .containerSosialMedia:hover .pSosmedGren a{
+    display: block;
   }

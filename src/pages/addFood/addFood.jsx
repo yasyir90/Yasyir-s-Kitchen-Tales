@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button,Modal } from "react-bootstrap";
 import upload from '../assets/cloud-storage-uploading-option.png'
 import add from '../assets/positive.png'
 import positive from "../assets/add-button-with-plus-symbol-in-a-black-circle.png"
 import axios from "axios";
 import minus from '../assets/minus.png'
+import negative from '../assets/cancel-button.png'
 
 const AddFood = () => {
   const [food, setFood] = useState({
@@ -14,6 +15,9 @@ const AddFood = () => {
     ingredients: [""],
   });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [eror, setEror] = useState('');
+  const [succes, setSucces] = useState('');
+  const [erorSumbit, setErorSumbit] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -48,35 +52,36 @@ const AddFood = () => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json" // tambahkan header untuk menentukan tipe konten
     };
+
+
+    if (food.name || food.description || food.imageUrl !=="") {
+        try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/create-food`, {
+          method: "POST",
+          headers,
+          body: JSON.stringify(food),
+        });
+    
+        if (response.ok) {
+           // Setelah food berhasil dibuat, tampilkan pesan konfirmasi
+       setShowModal(true);
+ 
+        }
   
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/create-food`, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(food),
-      });
+     
+      } catch (error) {
+        setEror('The file has been entered incorrectly or there is a problems')  
+       }
+     
+    }else if(food.name || food.description || food.imageUrl === ""){
+      setErorSumbit('make sure the input is loaded and filled properly') 
+    }
+    
   
-      if (response.ok) {
-         // Setelah food berhasil dibuat, tampilkan pesan konfirmasi
-    const confirmCreateAgain = window.confirm('Food berhasil dibuat! Apakah Anda ingin membuat lagi?');
-    if (confirmCreateAgain) {
-      // Jika pengguna ingin membuat lagi, reset form atau lakukan tindakan lainnya
-      setFood({
-        name: '',
-        description: '',
-        imageUrl: '',
-        ingredients: [''],
-      });
-      setSelectedImage(null);
-    } else {
-      window.location.href = "/allfood";
-    }
-      }
-    } catch (error) {
-      console.log(error);
-      // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
-    }
+  
   };
+
+  
 
 
 
@@ -103,14 +108,32 @@ const AddFood = () => {
       const url = response.data.url
       setFood({ ...food, imageUrl: url });
 
-      // Handle the response
-
+      setSucces('image uploade success')
+      setEror('')
 
     } catch (error) {
-      console.log('Error while uploading image:', error);
+      setEror('Make sure the file sent is correct')
+      setSucces('')
       // Handle the error
     }
   };
+
+  const [showModal, setShowModal] = useState(false)
+
+  const handleLogout = async () => {
+    window.location.href = "/allfood";
+  };
+
+  const handleClose = () => {
+    setFood({
+      name: '',
+      description: '',
+      imageUrl: '',
+      ingredients: [''],
+    });
+    setSelectedImage(null);
+    setShowModal(false);
+  }
 
 
   return (
@@ -143,6 +166,8 @@ const AddFood = () => {
          <img src={upload} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%"}}/>
       </Button>
     
+      <p className="text-success mt-2">{succes}</p>
+      <p className="text-danger mt-2">{eror}</p>
         </Form.Group>
         
      
@@ -160,17 +185,40 @@ const AddFood = () => {
               <Button style={{background:"none",border:"none", }} variant="danger" onClick={() => handleRemoveIngredient(index)} className="mb-2">
               <img src={minus} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
               </Button>
+
+
             </div>
           ))}
           <Button  variant="success" onClick={handleAddIngredient} style={{ marginTop: "5px",background:"none",border:"none", }}>
           <img src={positive} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#198754",padding:"5px",borderRadius:"50%"}}/>
           </Button>
         </Form.Group>
+        
+        <p className="text-danger mt-2">{erorSumbit}</p>
 
         <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
         <img src={add} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"none",padding:"5px",borderRadius:"50%"}}/> Add Food
         </Button>
         </Form>
+
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Confirmation</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleClose} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
+        </Modal.Header>
+        <Modal.Body style={{background:"#222",color:"white",fontFamily:"Righteous" }}>Are you sure you want to Logout?</Modal.Body>
+        <Modal.Footer style={{background:"#222" }}>
+          <Button variant="secondary" onClick={handleClose}>
+            Buat lagi
+          </Button>
+          <Button variant="danger" onClick={handleLogout}>
+            Ke Home
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
         </Container>
   )
           };

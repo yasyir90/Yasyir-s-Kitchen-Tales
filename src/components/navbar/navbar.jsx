@@ -37,7 +37,7 @@ function NavbarH() {
 
   const handleLogout = async () => {
     localStorage.clear();
-    window.location.reload();
+    window.location.href = "/";
   };
 
   const handleClose = () => setShowModal(false);
@@ -61,9 +61,12 @@ function NavbarH() {
             </Nav.Link>
          
 
-            <Nav.Link as={Link} to="/allfood">
-               All Food
-             </Nav.Link>
+         
+             {localStorage.getItem("role") === "admin" && (
+                 <Nav.Link as={Link} to="/allfood">
+                 All Food
+               </Nav.Link>
+            )}
          
            
            
@@ -96,7 +99,7 @@ function NavbarH() {
                Login
              </Nav.Link>
               <Nav.Link as={Link} to="/Signin" className="log">
-               Signin
+              Create Account
              </Nav.Link>
              </div>
             )}
@@ -117,7 +120,7 @@ function NavbarH() {
             Cancel
           </Button>
           <Button variant="danger" onClick={handleLogout}>
-            Delete
+            Logout
           </Button>
         </Modal.Footer>
       </Modal>

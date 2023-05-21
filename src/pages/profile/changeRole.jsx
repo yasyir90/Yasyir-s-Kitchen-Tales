@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import rolee from '../assets/businessman.png'
+import negative from '../assets/cancel-button.png'
 
 const ChangeRole = () => {
     const [showModal, setShowModal] = useState(false);
@@ -85,20 +86,23 @@ const ChangeRole = () => {
       </Button>
 
       <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Change Role</Modal.Title>
+        <Modal.Header  style={{background:"#222" }}>
+          <Modal.Title style={{color:"white",fontFamily:"Righteous"}}>Change Role</Modal.Title>
+          <Button style={{background:"none",border:"none", }} variant="danger" onClick={handleCloseModal} className="mb-2">
+              <img src={negative} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#dc3545",padding:"5px",borderRadius:"50%"}}/>
+              </Button>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{background:"#222" }}>
           <Form.Group controlId="formBasicRole">
-            <Form.Label>Select a role</Form.Label>
+            <Form.Label style={{color:"white",fontFamily:"Righteous"}}>Select a role</Form.Label>
             <Form.Control as="select" onChange={handleRoleChange}>
-            <option value="user">Select Role</option>
+            <option value="user" >Select Role</option>
               <option value="user">User</option>
               <option value="admin">Admin</option>
             </Form.Control>
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{background:"#222" }}>
           <Button variant="secondary" onClick={handleCloseModal}>
             Cancel
           </Button>

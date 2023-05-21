@@ -17,6 +17,10 @@ const EditFoodModal = ({ idFood }) => {
       });
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [eror, setEror] = useState('');
+  const [erorSumbit, setErorSumbit] = useState('');
+  const [succes, setSucces] = useState('');
+
     
       const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -65,12 +69,13 @@ const EditFoodModal = ({ idFood }) => {
           const url = response.data.url
           setFood({ ...food, imageUrl: url });
     
-          // Handle the response
+          setSucces('image uploade success')
+          setEror('')
     
     
         } catch (error) {
-          console.log('Error while uploading image:', error);
-          // Handle the error
+          setEror('Make sure the file sent is correct')
+          setSucces('')
         }
       };
     
@@ -85,8 +90,9 @@ const EditFoodModal = ({ idFood }) => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json" // tambahkan header untuk menentukan tipe konten
         };
-      
-        try {
+
+        if (food.name || food.description || food.imageUrl !==""){
+            try {
           const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/update-food/${idFood}`, {
             method: "POST",
             headers,
@@ -94,17 +100,18 @@ const EditFoodModal = ({ idFood }) => {
           });
       
           if (response.ok) {
-            // tambahkan kode untuk menampilkan pesan sukses atau melakukan navigasi ke halaman lain
     setShowModal(false)
     window.location.reload();
-          } else {
-            // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
-          }
+          } 
         } catch (error) {
-          console.log(error);
-          // tambahkan kode untuk menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai
+          setErorSumbit('make sure the input is loaded and filled properly')   
         }
-      };
+      }else if(food.name || food.description || food.imageUrl === ""){
+        setErorSumbit('make sure the input is loaded and filled properly') 
+      }
+        }
+      
+      
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -149,6 +156,9 @@ const EditFoodModal = ({ idFood }) => {
          <Button style={{background:"none",border:"none",marginTop:"20px" }} onClick={handleImageUpload} >
          <img src={upload} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#005b8f",padding:"5px",borderRadius:"50%"}}/>
       </Button>
+
+      <p className="text-danger mt-2">{eror}</p>
+        <p className="text-success mt-2">{succes}</p>
     
         </Form.Group>
 
@@ -171,6 +181,8 @@ const EditFoodModal = ({ idFood }) => {
           <img src={positive} alt= "upload" style={{width:"40px",height:"40px",backgroundColor:"#198754",padding:"5px",borderRadius:"50%"}}/>
           </Button>
         </Form.Group>
+
+        <p className="text-danger mt-2">{erorSumbit}</p>
 
         <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
           Edit Food
